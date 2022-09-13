@@ -39,6 +39,10 @@ networ_address = []
 for i in range(len(subnet_binary[ahol_a_vonal_van -1])):
     for j in range(8):
         if subnet_binary[ahol_a_vonal_van -1][i][j] == "1" and subnet_binary[ahol_a_vonal_van -1][i][j] == ip_binary[ahol_a_vonal_van -1][i][j]:
-            print("1", end="")
+            networ_address.append("1")
         else:
-            print("0")
+            networ_address.append("0")
+
+
+print(networ_address)
+
