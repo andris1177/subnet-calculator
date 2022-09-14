@@ -7,6 +7,13 @@ def dec_to_bin(number, binary):
     return return_binary
 
 
+#változók
+ahol_a_vonal_van = 0
+networ_address = []
+network_address_változatott = ""
+first_ip_address = ""
+
+
 #1-től 255-ig számok binárisan beolvasása és számmá alakítása
 f = open("binary.txt", "r", encoding = "utf-8")
 binaryk = []
@@ -27,7 +34,6 @@ subnet_binary =  dec_to_bin(hálózati_cím, binaryk)
 ip_binary = dec_to_bin(ip_cím, binaryk)
 
 #megnézni mettől oszthatók ki a címek
-ahol_a_vonal_van = 0
 for i in range(len(subnet_binary)):
     if subnet_binary[i] != ['11111111']:
         ahol_a_vonal_van = i
@@ -37,7 +43,7 @@ print(subnet_binary)
 print(ip_binary)
 
 #a vonalba beleső ip cím szegmens
-networ_address = []
+
 for i in range(len(subnet_binary[ahol_a_vonal_van])):
     for j in range(8):
         if subnet_binary[ahol_a_vonal_van][i][j] == "1" and subnet_binary[ahol_a_vonal_van][i][j] == ip_binary[ahol_a_vonal_van][i][j]:
@@ -59,11 +65,25 @@ for i in range(len(binaryk)):
         networ_address_egyben = i
 
 
-print(ahol_a_vonal_van)
-network_address_változatott = (f"{ip_cím[:ahol_a_vonal_van]}")
-print(network_address_változatott)
+if ahol_a_vonal_van == 3:
+    network_address_változatott = (f"{ip_cím[:ahol_a_vonal_van]}.{networ_address_egyben}")
+    first_ip_address = (f"{ip_cím[:ahol_a_vonal_van]}.{networ_address+1}")
+
+if ahol_a_vonal_van == 2:
+    network_address_változatott = (f"{ip_cím[:ahol_a_vonal_van]}.{networ_address_egyben}.0")
+    first_ip_address = (f"{ip_cím[:ahol_a_vonal_van]}.{networ_address}.1")
+
+if ahol_a_vonal_van == 1:
+    network_address_változatott = (f"{ip_cím[:ahol_a_vonal_van]}.{networ_address_egyben}.0.0")
+    first_ip_address = (f"{ip_cím[:ahol_a_vonal_van]}.{networ_address_egyben}.0.1")
+    
+
+network_address_változatott = network_address_változatott.replace("[", "").replace("]", "").replace("'", "").replace(",", ".").replace(" ", "")
+first_ip_address = first_ip_address.replace("[", "").replace("]", "").replace("'", "").replace(",", ".").replace(" ", "")
 
 
-#print(f"network address: ")
+
+print(f"Network address: {network_address_változatott}")
+print(f"First ip address: {first_ip_address}")
 
 #print(f"kettő {kettő_négyzeten}.en = ")
