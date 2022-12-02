@@ -74,14 +74,9 @@ def last_host(ahol_a_vonal_van, ip_cím_binary, subnet_binary):
     for i in range(len(subnet_binary[ahol_a_vonal_van][0])):
         if subnet_binary[ahol_a_vonal_van][0][i] == "0":
             számon_belüli_vonal = i
-    print(számon_belüli_vonal)
     szám_eleje = ip_cím_binary[ahol_a_vonal_van][0][:számon_belüli_vonal]
     szám_vége = ip_cím_binary[ahol_a_vonal_van][0][számon_belüli_vonal:]
-
-    print(szám_eleje)
-    print(szám_vége)
             
-
 def kiír(ip_cím_dec, subnet_address, subnet_binary, ip_cím_binary, eszköz_db_szám, ahol_a_vonal_van, network_address_dec, ip_cím):
     if ahol_a_vonal_van == 3:
         network_address_változatott = (f"{ip_cím[:ahol_a_vonal_van]}.{network_address_dec}")
